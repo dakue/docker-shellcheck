@@ -1,0 +1,13 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker build -t dakue/shellcheck .
+
+test:
+  override:
+    - mkdir -p target
+    - docker run -it -v $(pwd)/target:/target dakue/shellcheck
+    - test -f target/shellcheck && cp target/shellcheck $CIRCLE_ARTIFACTS
