@@ -6,6 +6,7 @@ then
     cd /shellcheck
     export LANG=C.UTF-8
     cabal update
+    cabal install 'transformers < 0.5'
     cabal install
     if mountpoint -q /target; then
         echo "Installing shellcheck to /target"
